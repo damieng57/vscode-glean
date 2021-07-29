@@ -1,3 +1,4 @@
+import { beforeEach, afterEach, it } from 'mocha'
 import * as sinon from "sinon";
 import * as directoryPicker from "../directories-picker";
 import * as filePicker from "../file-picker";
@@ -14,13 +15,13 @@ const expect = chai.expect;
 
 chai.use(sinonChai);
 
-describe("when refactoring stateful component into stateless component", () => {
+suite("when refactoring stateful component into stateless component", () => {
   let sandbox, configStub;
   let selectedTextStart = {},
     selectedTextEnd = {};
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   beforeEach(() => {
@@ -284,7 +285,7 @@ describe("when refactoring stateful component into stateless component", () => {
     );
   });
 
-  describe('when handling class properties', () => {
+  suite('when handling class properties', () => {
     it("it replaces it with a match state setter hook", async () => {
       givenApprovedWarning();
       sandbox.stub(editor, "selectedText").returns(`
@@ -309,7 +310,7 @@ describe("when refactoring stateful component into stateless component", () => {
     });
   });
 
-  describe("when handling setState call that receives a function", () => {
+  suite("when handling setState call that receives a function", () => {
     it("it replaces it with a match state setter hook", async () => {
       givenApprovedWarning();
       sandbox.stub(editor, "selectedText").returns(`

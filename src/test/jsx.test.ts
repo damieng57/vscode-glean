@@ -1,3 +1,4 @@
+import { beforeEach, afterEach, it } from 'mocha'
 import * as sinon from "sinon";
 import * as directoryPicker from "../directories-picker";
 import * as filePicker from "../file-picker";
@@ -13,7 +14,7 @@ const expect = chai.expect;
 
 chai.use(sinonChai);
 
-describe("jsx module", function() {
+suite("jsx module", function() {
   let sandbox, stubConfig;
   let selectedTextStart = {},
     selectedTextEnd = {};
@@ -25,7 +26,7 @@ describe("jsx module", function() {
   };
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   beforeEach(() => {
@@ -66,9 +67,9 @@ describe("jsx module", function() {
     );
   });
 
-  describe("When extracting JSX to component", () => {
+  suite("When extracting JSX to component", () => {
 
-    describe("useExportDefault config", ()=>{
+    suite("useExportDefault config", ()=>{
 
       const componentBodyText = `<div>Hello World</div>`;
 
@@ -229,7 +230,7 @@ describe("jsx module", function() {
     });
   });
 
-  describe("when refactoring stateless component into stateful component", () => {
+  suite("when refactoring stateless component into stateful component", () => {
     it("turn all references to destructed props to references to props object", async () => {
       sandbox.stub(editor, "selectedText").returns(`
                 function Foo({x}) {

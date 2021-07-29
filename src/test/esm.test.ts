@@ -1,4 +1,5 @@
 
+import { beforeEach, afterEach, it } from 'mocha'
 import * as sinon from 'sinon';
 import * as directoryPicker from '../directories-picker';
 import * as filePicker from '../file-picker';
@@ -11,11 +12,11 @@ const expect = chai.expect;
 
 chai.use(sinonChai);
 
-describe('esm support', function () {
+suite('esm support', function () {
     let sandbox;
 
     beforeEach(() => {
-        sandbox = sinon.sandbox.create();
+        sandbox = sinon.createSandbox();
     });
 
     beforeEach(() => {
